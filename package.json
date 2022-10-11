@@ -1,0 +1,16 @@
+{
+    "name": "yishan",
+    "version": "0.0.1",
+    "description": "a little game about assembling plants to beat enemies.",
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc -w",
+        "style": "node ./script/compile_less.js",
+        "start": "npm run build && npm run style"
+    },
+    "author": "sealleci",
+    "license": "MIT",
+    "devDependencies": {
+        "typescript": "^4.8.4"
+    }
+}
