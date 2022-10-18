@@ -9,5 +9,6 @@
         "**/*.less",
         "**/*.ts"
     ],
-    "liveServer.settings.wait": 100
+    "liveServer.settings.wait": 100,
+    "typescript.tsdk": "node_modules\\typescript\\lib"
 }

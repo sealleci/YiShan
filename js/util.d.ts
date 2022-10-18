@@ -1,0 +1,11 @@
+import { NestedArray } from './type';
+declare function sleep(ms: number): Promise<unknown>;
+declare function roll(min: number, max?: number): number;
+declare function range(start: number, end?: number): readonly number[];
+declare function flatten<T>(nested_array: NestedArray<T>): T[];
+declare function clearChildrenOfElement(element: HTMLElement): void;
+declare function toggleClassOfElement(element: HTMLElement, class_name: string): void;
+declare function addClassOfElement(element: HTMLElement, class_name: string): void;
+declare function removeClassOfElement(element: HTMLElement, class_name: string): void;
+export { sleep, roll, range, flatten };
+export { clearChildrenOfElement, toggleClassOfElement, addClassOfElement, removeClassOfElement };
