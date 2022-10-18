@@ -12,7 +12,7 @@ function sleep(ms: number) {
 }
 
 /**
- * Return a random integer of given range.
+ * Return a random integer within given range.
  * 
  * Usages:
  * - ```roll(5) -> i in [0, 5)```.
@@ -32,7 +32,7 @@ function roll(min: number, max?: number): number {
 }
 
 /**
- * Return an array of given range.
+ * Return a discrete array of given range.
  * 
  * Usages:
  * - ```range(3) -> [0, 1, 2]```.
@@ -60,7 +60,7 @@ function range(start: number, end?: number): readonly number[] {
 }
 
 /**
- * Flatten a nested array to one dimension.
+ * Flatten nested array to one dimension.
  * 
  * Usages:
  * - ```flatten([[1], [2]]) -> [1, 2]```.
@@ -72,13 +72,49 @@ function flatten<T>(nested_array: NestedArray<T>): T[] {
     return flatten2DArray(nested_array.map(x => Array.isArray(x) ? flatten(x) : [x]))
 }
 
-function clearChildrenOfElement(element: HTMLElement) {
+/**
+ * @param text Original string.
+ * @param filler Padding filler.
+ * @param width Padding width.
+ * @param is_left Flag which determines left or right padding.
+ * @returns string.
+ */
+function pad(text: string, filler: string, width: number, is_left: boolean = true): string {
+    if (text.length + filler.length > width) {
+        return text
+    }
+
+    let remain_width = width - text.length
+    let result = text
+
+    while (true) {
+        if (remain_width < filler.length) {
+            break
+        }
+
+        result = is_left ? filler + result : result + filler
+        remain_width -= filler.length
+    }
+
+    return result
+}
+
+/**
+ * Return the current local time.
+ * @return string ```{fmt: "yyyy-MM-dd HH:mm:ss"}```.
+ */
+function getCurrentTime(): string {
+    const date = new Date()
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${date.getMinutes()}:${date.getSeconds()}`
+}
+
+function clearChildren(element: HTMLElement) {
     for (let child of Array.from(element.childNodes)) {
         element.removeChild(child)
     }
 }
 
-function toggleClassOfElement(element: HTMLElement, class_name: string) {
+function toggleClass(element: HTMLElement, class_name: string) {
     if (element.classList.contains(class_name)) {
         element.classList.remove(class_name)
     } else {
@@ -86,17 +122,23 @@ function toggleClassOfElement(element: HTMLElement, class_name: string) {
     }
 }
 
-function addClassOfElement(element: HTMLElement, class_name: string) {
+function addClass(element: HTMLElement, class_name: string) {
     if (!element.classList.contains(class_name)) {
         element.classList.add(class_name)
     }
 }
 
-function removeClassOfElement(element: HTMLElement, class_name: string) {
+function removeClass(element: HTMLElement, class_name: string) {
     if (element.classList.contains(class_name)) {
         element.classList.remove(class_name)
     }
 }
 
-export { sleep, roll, range, flatten }
-export { clearChildrenOfElement, toggleClassOfElement, addClassOfElement, removeClassOfElement }
+export { sleep, roll, range, flatten, pad }
+export { getCurrentTime }
+export { clearChildren, toggleClass, addClass, removeClass }
+
+// function test() {
+//     console.log(getCurrentTime())
+// }
+// test()

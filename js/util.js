@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeClassOfElement = exports.addClassOfElement = exports.toggleClassOfElement = exports.clearChildrenOfElement = exports.flatten = exports.range = exports.roll = exports.sleep = void 0;
+exports.removeClass = exports.addClass = exports.toggleClass = exports.clearChildren = exports.getCurrentTime = exports.pad = exports.flatten = exports.range = exports.roll = exports.sleep = void 0;
 function sleep(ms) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms);
@@ -43,13 +43,34 @@ function flatten(nested_array) {
     return flatten2DArray(nested_array.map(x => Array.isArray(x) ? flatten(x) : [x]));
 }
 exports.flatten = flatten;
-function clearChildrenOfElement(element) {
+function pad(text, filler, width, is_left = true) {
+    if (text.length + filler.length > width) {
+        return text;
+    }
+    let remain_width = width - text.length;
+    let result = text;
+    while (true) {
+        if (remain_width < filler.length) {
+            break;
+        }
+        result = is_left ? filler + result : result + filler;
+        remain_width -= filler.length;
+    }
+    return result;
+}
+exports.pad = pad;
+function getCurrentTime() {
+    const date = new Date();
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${date.getMinutes()}:${date.getSeconds()}`;
+}
+exports.getCurrentTime = getCurrentTime;
+function clearChildren(element) {
     for (let child of Array.from(element.childNodes)) {
         element.removeChild(child);
     }
 }
-exports.clearChildrenOfElement = clearChildrenOfElement;
-function toggleClassOfElement(element, class_name) {
+exports.clearChildren = clearChildren;
+function toggleClass(element, class_name) {
     if (element.classList.contains(class_name)) {
         element.classList.remove(class_name);
     }
@@ -57,17 +78,17 @@ function toggleClassOfElement(element, class_name) {
         element.classList.add(class_name);
     }
 }
-exports.toggleClassOfElement = toggleClassOfElement;
-function addClassOfElement(element, class_name) {
+exports.toggleClass = toggleClass;
+function addClass(element, class_name) {
     if (!element.classList.contains(class_name)) {
         element.classList.add(class_name);
     }
 }
-exports.addClassOfElement = addClassOfElement;
-function removeClassOfElement(element, class_name) {
+exports.addClass = addClass;
+function removeClass(element, class_name) {
     if (element.classList.contains(class_name)) {
         element.classList.remove(class_name);
     }
 }
-exports.removeClassOfElement = removeClassOfElement;
+exports.removeClass = removeClass;
 //# sourceMappingURL=util.js.map
