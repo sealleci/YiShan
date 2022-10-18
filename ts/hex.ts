@@ -37,7 +37,7 @@ interface VectorConstructor {
     new <N extends number>(...initials: Tuple<number, N>): Vector<N>
 }
 
-class VectorImplementation<N extends number> {
+class VectorImplementation<N extends number>  {
     [k: number]: number
     public length: number
     constructor(...initials: readonly number[]) {
@@ -162,7 +162,7 @@ function test() {
     console.log(aaa.normalize().toString())
     console.log(aaa.getMappingId())
     console.log(aaa.toString())
-    let d: CubeCoordinate = FLAT_HEXAGON_DIRECTION_VECTORS[FlatHexagonDirection.BOTTOM]
-    console.log(d.toString())
+    let d = FLAT_HEXAGON_DIRECTION_VECTORS[FlatHexagonDirection.BOTTOM]
+    console.log(d)
 }
 test()

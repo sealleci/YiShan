@@ -105,7 +105,7 @@ function test() {
     console.log(aaa.getMappingId());
     console.log(aaa.toString());
     let d = FLAT_HEXAGON_DIRECTION_VECTORS[enum_1.FlatHexagonDirection.BOTTOM];
-    console.log(d.toString());
+    console.log(d);
 }
 test();
 //# sourceMappingURL=hex.js.map
