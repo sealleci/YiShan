@@ -105,7 +105,7 @@ function pad(text: string, filler: string, width: number, is_left: boolean = tru
  */
 function getCurrentTime(): string {
     const date = new Date()
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${date.getMinutes()}:${date.getSeconds()}`
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${pad(date.getMinutes().toString(), '0', 2)}:${pad(date.getSeconds().toString(), '0', 2)}`
 }
 
 function clearChildren(element: HTMLElement) {

@@ -61,7 +61,7 @@ function pad(text, filler, width, is_left = true) {
 exports.pad = pad;
 function getCurrentTime() {
     const date = new Date();
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${date.getMinutes()}:${date.getSeconds()}`;
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${pad(date.getMinutes().toString(), '0', 2)}:${pad(date.getSeconds().toString(), '0', 2)}`;
 }
 exports.getCurrentTime = getCurrentTime;
 function clearChildren(element) {
