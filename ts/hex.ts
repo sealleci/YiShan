@@ -1,5 +1,4 @@
 import { Tuple } from './type'
-import { FlatHexagonDirection } from './enum'
 
 type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
     length: N,
@@ -146,23 +145,24 @@ const FLAT_HEXAGON_DIRECTION_VECTORS = {
 
 export { GeneralVector, CartesianCoordinate, CubeCoordinate, FLAT_HEXAGON_DIRECTION_VECTORS }
 
-function test() {
-    function foo(y: CubeCoordinate) {
-        y.add(y)
-    }
-    let aaa = new GeneralVector(1, 2, 3)
-    let bbb = new GeneralVector(6, 5, 4)
-    foo(aaa)
-    console.log(aaa.add(bbb).toString())
-    console.log(aaa.scale(0.5).toString())
-    console.log(aaa.dot(bbb))
-    console.log(aaa.cross(bbb).toString())
-    console.log(aaa.isEqualTo(bbb))
-    console.log(aaa.getNorm())
-    console.log(aaa.normalize().toString())
-    console.log(aaa.getMappingId())
-    console.log(aaa.toString())
-    let d = FLAT_HEXAGON_DIRECTION_VECTORS[FlatHexagonDirection.BOTTOM]
-    console.log(d)
-}
-test()
+// import { FlatHexagonDirection } from './enum'
+// function test() {
+//     function foo(y: CubeCoordinate) {
+//         y.add(y)
+//     }
+//     let aaa = new GeneralVector(1, 2, 3)
+//     let bbb = new GeneralVector(6, 5, 4)
+//     foo(aaa)
+//     console.log(aaa.add(bbb).toString())
+//     console.log(aaa.scale(0.5).toString())
+//     console.log(aaa.dot(bbb))
+//     console.log(aaa.cross(bbb).toString())
+//     console.log(aaa.isEqualTo(bbb))
+//     console.log(aaa.getNorm())
+//     console.log(aaa.normalize().toString())
+//     console.log(aaa.getMappingId())
+//     console.log(aaa.toString())
+//     let d = FLAT_HEXAGON_DIRECTION_VECTORS[FlatHexagonDirection.BOTTOM]
+//     console.log(d)
+// }
+// test()

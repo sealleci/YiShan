@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FLAT_HEXAGON_DIRECTION_VECTORS = exports.GeneralVector = void 0;
-const enum_1 = require("./enum");
 class VectorImplementation {
     constructor(...initials) {
         this.length = initials.length;
@@ -88,24 +87,4 @@ const FLAT_HEXAGON_DIRECTION_VECTORS = {
     BOTTOM_LEFT: new GeneralVector(-1, 1, 0)
 };
 exports.FLAT_HEXAGON_DIRECTION_VECTORS = FLAT_HEXAGON_DIRECTION_VECTORS;
-function test() {
-    function foo(y) {
-        y.add(y);
-    }
-    let aaa = new GeneralVector(1, 2, 3);
-    let bbb = new GeneralVector(6, 5, 4);
-    foo(aaa);
-    console.log(aaa.add(bbb).toString());
-    console.log(aaa.scale(0.5).toString());
-    console.log(aaa.dot(bbb));
-    console.log(aaa.cross(bbb).toString());
-    console.log(aaa.isEqualTo(bbb));
-    console.log(aaa.getNorm());
-    console.log(aaa.normalize().toString());
-    console.log(aaa.getMappingId());
-    console.log(aaa.toString());
-    let d = FLAT_HEXAGON_DIRECTION_VECTORS[enum_1.FlatHexagonDirection.BOTTOM];
-    console.log(d);
-}
-test();
 //# sourceMappingURL=hex.js.map

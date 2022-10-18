@@ -6,6 +6,7 @@
         "build": "tsc",
         "watch": "tsc -w",
         "style": "node ./script/compile_less.js",
+        "git": "node ./script/git.js",
         "start": "npm run build && npm run style"
     },
     "author": "sealleci",
