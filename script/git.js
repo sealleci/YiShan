@@ -10,7 +10,7 @@ const simpleGit = require("simple-git");
         let date = new Date();
         comment = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${(date.getHours() < 10 ? '0' : '') + date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     }
-    await git.add('.');
+    await git.add('-A', '.');
     await git.commit(comment);
     console.log(`Executed git commands.`);
 })();
