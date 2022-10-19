@@ -1,5 +1,5 @@
-import { FlatHexagonDirection } from './enum'
-import { Tuple } from './type'
+import { FlatHexagonDirection } from './enum.js'
+import { Tuple } from './type.js'
 
 type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
     length: N,
@@ -42,8 +42,8 @@ class VectorImplementation<N extends number>  {
     public length: number
     constructor(...initials: readonly number[]) {
         this.length = initials.length
-        for (const [index, value] of initials.entries()) {
-            this[index] = value
+        for (let i = 0; i < initials.length; i += 1) {
+            this[i] = initials[i]
         }
     }
     public add(vector: VectorImplementation<N>): VectorImplementation<N> {
@@ -146,23 +146,3 @@ const FLAT_HEXAGON_DIRECTION_VECTORS: Record<keyof typeof FlatHexagonDirection, 
 }
 
 export { GeneralVector, CartesianCoordinate, CubeCoordinate, FLAT_HEXAGON_DIRECTION_VECTORS }
-
-// function test() {
-//     function foo(y: CubeCoordinate) {
-//         y.add(y)
-//     }
-//     let aaa = new GeneralVector(1, 2, 3)
-//     let bbb = new GeneralVector(6, 5, 4)
-//     foo(aaa)
-//     console.log(aaa.add(bbb).toString())
-//     console.log(aaa.scale(0.5).toString())
-//     console.log(aaa.dot(bbb))
-//     console.log(aaa.cross(bbb).toString())
-//     console.log(aaa.isEqualTo(bbb))
-//     console.log(aaa.getNorm())
-//     console.log(aaa.normalize().toString())
-//     console.log(aaa.getMappingId())
-//     console.log(aaa.toString())
-//     let d = FLAT_HEXAGON_DIRECTION_VECTORS[FlatHexagonDirection.BOTTOM]
-// }
-// test()

@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.FlatHexagonDirection = void 0;
 var FlatHexagonDirection;
 (function (FlatHexagonDirection) {
     FlatHexagonDirection["TOP_LEFT"] = "TOP_LEFT";
@@ -10,5 +7,5 @@ var FlatHexagonDirection;
     FlatHexagonDirection["BOTTOM"] = "BOTTOM";
     FlatHexagonDirection["BOTTOM_LEFT"] = "BOTTOM_LEFT";
 })(FlatHexagonDirection || (FlatHexagonDirection = {}));
-exports.FlatHexagonDirection = FlatHexagonDirection;
+export { FlatHexagonDirection };
 //# sourceMappingURL=enum.js.map

@@ -1,4 +1,4 @@
-import { NestedArray } from './type'
+import { NestedArray } from './type.js'
 
 /**
  * Sleep for given time.

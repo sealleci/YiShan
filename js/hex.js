@@ -1,11 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.FLAT_HEXAGON_DIRECTION_VECTORS = exports.GeneralVector = void 0;
 class VectorImplementation {
     constructor(...initials) {
         this.length = initials.length;
-        for (const [index, value] of initials.entries()) {
-            this[index] = value;
+        for (let i = 0; i < initials.length; i += 1) {
+            this[i] = initials[i];
         }
     }
     add(vector) {
@@ -77,7 +74,6 @@ class VectorImplementation {
     }
 }
 const GeneralVector = VectorImplementation;
-exports.GeneralVector = GeneralVector;
 const FLAT_HEXAGON_DIRECTION_VECTORS = {
     TOP_LEFT: new GeneralVector(-1, 0, 1),
     TOP: new GeneralVector(0, -1, 1),
@@ -86,5 +82,5 @@ const FLAT_HEXAGON_DIRECTION_VECTORS = {
     BOTTOM: new GeneralVector(0, 1, -1),
     BOTTOM_LEFT: new GeneralVector(-1, 1, 0)
 };
-exports.FLAT_HEXAGON_DIRECTION_VECTORS = FLAT_HEXAGON_DIRECTION_VECTORS;
+export { GeneralVector, FLAT_HEXAGON_DIRECTION_VECTORS };
 //# sourceMappingURL=hex.js.map

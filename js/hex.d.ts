@@ -1,5 +1,5 @@
-import { FlatHexagonDirection } from './enum';
-import { Tuple } from './type';
+import { FlatHexagonDirection } from './enum.js';
+import { Tuple } from './type.js';
 declare type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
     length: N;
     add(vector: Vector<N>): Vector<N>;

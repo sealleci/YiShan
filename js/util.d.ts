@@ -1,4 +1,4 @@
-import { NestedArray } from './type';
+import { NestedArray } from './type.js';
 declare function sleep(ms: number): Promise<unknown>;
 declare function roll(min: number, max?: number): number;
 declare function range(start: number, end?: number): readonly number[];
