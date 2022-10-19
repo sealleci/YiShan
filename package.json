@@ -6,8 +6,9 @@
     "scripts": {
         "build": "tsc",
         "watch": "tsc -w",
-        "style": "node --experimental-modules ./script/compile_less.js",
+        "style": "node --experimental-modules ./script/less.js",
         "git": "node --experimental-modules ./script/git.js",
+        "test": "node --experimental-modules ./script/test.js",
         "start": "npm run build && npm run style"
     },
     "author": "sealleci",

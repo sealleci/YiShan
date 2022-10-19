@@ -2,11 +2,15 @@ import { NestedArray } from './type.js'
 
 /**
  * Sleep for given time.
- * @param ms an integer for milliseconds.
- * @returns Promise.
+ * 
+ * Usage:
+ * ``` js
+ * await sleep(100)
+ * ```
+ * @param ms Milliseconds.
  */
 function sleep(ms: number) {
-    return new Promise((resolve) => {
+    return new Promise<void>((resolve) => {
         setTimeout(resolve, ms)
     })
 }
@@ -14,9 +18,11 @@ function sleep(ms: number) {
 /**
  * Return a random integer within given range.
  * 
- * Usages:
- * - ```roll(5) -> i in [0, 5)```.
- * - ```roll(1, 10) -> i in [1, 10]```.
+ * Usage:
+ * ``` js
+ * roll(5) // i in [0, 5)
+ * roll(1, 10) // i in [1, 10]
+ * ```
  */
 function roll(min: number, max?: number): number {
     if (max === undefined) {
@@ -34,9 +40,11 @@ function roll(min: number, max?: number): number {
 /**
  * Return a discrete array of given range.
  * 
- * Usages:
- * - ```range(3) -> [0, 1, 2]```.
- * - ```range(1, 3) -> [1, 2, 3]```.
+ * Usage:
+ * ``` js
+ * range(3) // [0, 1, 2]
+ * range(1, 3) // [1, 2, 3]
+ * ```
  */
 function range(start: number, end?: number): readonly number[] {
     if (end === undefined) {
@@ -62,8 +70,10 @@ function range(start: number, end?: number): readonly number[] {
 /**
  * Flatten nested array to one dimension.
  * 
- * Usages:
- * - ```flatten([[1], [2]]) -> [1, 2]```.
+ * Usage:
+ * ``` js
+ * flatten([[1], [2]]) // [1, 2]
+ * ```
  */
 function flatten<T>(nested_array: NestedArray<T>): T[] {
     function flatten2DArray<S>(array: S[][]): S[] {
@@ -77,7 +87,6 @@ function flatten<T>(nested_array: NestedArray<T>): T[] {
  * @param filler Padding filler.
  * @param width Padding width.
  * @param is_left Flag which determines left or right padding.
- * @returns string.
  */
 function pad(text: string, filler: string, width: number, is_left: boolean = true): string {
     if (text.length + filler.length > width) {
@@ -100,8 +109,19 @@ function pad(text: string, filler: string, width: number, is_left: boolean = tru
 }
 
 /**
+ * Determine whether a variable is not ```null``` and ```undefined```.
+ */
+function diagnose(variable: unknown): boolean {
+    return variable !== null && typeof (variable) !== 'undefined'
+}
+
+/**
  * Return the current local time.
- * @return string ```{fmt: "yyyy-MM-dd HH:mm:ss"}```.
+ * 
+ * Format of time:
+ * ``` js
+ * /yyyy-MM-dd HH:mm:ss/
+ * ```
  */
 function getCurrentTime(): string {
     const date = new Date()
@@ -134,11 +154,6 @@ function removeClass(element: HTMLElement, class_name: string) {
     }
 }
 
-export { sleep, roll, range, flatten, pad }
+export { sleep, roll, range, flatten, pad, diagnose }
 export { getCurrentTime }
 export { clearChildren, toggleClass, addClass, removeClass }
-
-// function test() {
-//     console.log(getCurrentTime())
-// }
-// test()

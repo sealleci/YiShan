@@ -7,6 +7,9 @@ type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
      * Add two vectors.
      */
     add(vector: Vector<N>): Vector<N>,
+    /**
+     * Multiply the vector with given factor.
+     */
     scale(factor: number): Vector<N>,
     /**
      * Return the dot product of two vectors.
@@ -20,10 +23,17 @@ type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
      * Return the norm of the vector.
      */
     getNorm(): number,
+    /**
+     * Normalize the vector.
+     */
     normalize(): Vector<N>,
     /**
      * Return the mapping id for HTML element.
-     * @return string ```{eg: v0_0_0, regex: /v(\d+_)*\d/}```.
+     * 
+     * Format of ID:
+     * ``` js
+     * /v(\d+_)*\d+/
+     * ```
      */
     getMappingId(): string,
     /**
@@ -33,7 +43,7 @@ type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
     toString(): string
 }
 
-interface VectorConstructor {
+interface VectorConverter {
     new <N extends number>(...initials: Tuple<number, N>): Vector<N>
 }
 
@@ -123,9 +133,11 @@ class VectorImplementation<N extends number>  {
  * Instantiate a vector with given initials.
  * 
  * Usages:
- * - ```new GeneralVector(1, 2) -> Vector<2>```.
+ * ``` js
+ * new GeneralVector(1, 2) // Vector<2>
+ * ```
  */
-const GeneralVector = VectorImplementation as VectorConstructor
+const GeneralVector = VectorImplementation as VectorConverter
 /**
  * The coordinate of rectangular grid.
  */
@@ -136,13 +148,12 @@ type CartesianCoordinate = Vector<2>
 type CubeCoordinate = Vector<3>
 
 const FLAT_HEXAGON_DIRECTION_VECTORS: Record<keyof typeof FlatHexagonDirection, CubeCoordinate> = {
-    // @ts-ignore
     TOP_LEFT: new GeneralVector(-1, 0, 1),
     TOP: new GeneralVector(0, -1, 1),
     TOP_RIGHT: new GeneralVector(1, -1, 0),
     BOTTOM_RIGHT: new GeneralVector(1, 0, -1),
     BOTTOM: new GeneralVector(0, 1, -1),
     BOTTOM_LEFT: new GeneralVector(-1, 1, 0)
-}
+} as any
 
 export { GeneralVector, CartesianCoordinate, CubeCoordinate, FLAT_HEXAGON_DIRECTION_VECTORS }
