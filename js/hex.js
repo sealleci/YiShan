@@ -46,7 +46,7 @@ class VectorImplementation {
         let components = [];
         let norm = this.getNorm();
         if (norm === 0) {
-            throw new Error(`@hex.Vector.normalize: this.norm() is 0.`);
+            throw new Error(`@hex.VectorImplementation.normalize: this.norm(${norm}) is 0.`);
         }
         for (let i = 0; i < this.length; i += 1) {
             components.push(this[i] / norm);

@@ -129,13 +129,14 @@ const GeneralVector = VectorImplementation as VectorConstructor
 /**
  * The coordinate of rectangular grid.
  */
-type CartesianCoordinate = Vector<3>
+type CartesianCoordinate = Vector<2>
 /**
  * The coordinate of flat hexagonal grid.
  */
 type CubeCoordinate = Vector<3>
 
 const FLAT_HEXAGON_DIRECTION_VECTORS: Record<keyof typeof FlatHexagonDirection, CubeCoordinate> = {
+    // @ts-ignore
     TOP_LEFT: new GeneralVector(-1, 0, 1),
     TOP: new GeneralVector(0, -1, 1),
     TOP_RIGHT: new GeneralVector(1, -1, 0),
