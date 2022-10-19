@@ -51,6 +51,9 @@ function pad(text, filler, width, is_left = true) {
     }
     return result;
 }
+function diagnose(variable) {
+    return variable !== null && typeof (variable) !== 'undefined';
+}
 function getCurrentTime() {
     const date = new Date();
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${pad(date.getMinutes().toString(), '0', 2)}:${pad(date.getSeconds().toString(), '0', 2)}`;
@@ -78,7 +81,7 @@ function removeClass(element, class_name) {
         element.classList.remove(class_name);
     }
 }
-export { sleep, roll, range, flatten, pad };
+export { sleep, roll, range, flatten, pad, diagnose };
 export { getCurrentTime };
 export { clearChildren, toggleClass, addClass, removeClass };
 //# sourceMappingURL=util.js.map

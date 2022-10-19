@@ -28,7 +28,7 @@ class VectorImplementation {
     }
     cross(vector) {
         if (this.length !== 3 || vector.length !== 3) {
-            throw new Error(`@hex.VectorImplementation.cross: arg.dim(${this.length}) and this.dim(${vector.length}) are not both 3.`);
+            throw new Error(`@ts.hex.VectorImplementation.cross: arg.dim(${this.length}) and this.dim(${vector.length}) are not both 3.`);
         }
         return new VectorImplementation(this[1] * vector[2] - this[2] * vector[1], this[2] * vector[0] - this[0] * vector[2], this[0] * vector[1] - this[1] * vector[0]);
     }
@@ -43,7 +43,7 @@ class VectorImplementation {
         let components = [];
         let norm = this.getNorm();
         if (norm === 0) {
-            throw new Error(`@hex.VectorImplementation.normalize: this.norm(${norm}) is 0.`);
+            throw new Error(`@ts.hex.VectorImplementation.normalize: this.norm(${norm}) is 0.`);
         }
         for (let i = 0; i < this.length; i += 1) {
             components.push(this[i] / norm);

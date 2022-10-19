@@ -1,6 +1,6 @@
 import { readdirSync, statSync } from "fs";
+import { fileURLToPath } from "url";
 import path from "path";
-import { fileURLToPath } from 'url';
 import { execSync } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,5 +19,5 @@ const __dirname = path.dirname(__filename);
         }
     }
 
-    console.log(`Compiled ${files.length} less files.`);
+    console.log(`@script.less: Compiled ${files.length} less file${files.length > 1 ? "s" : ""}.`);
 })();

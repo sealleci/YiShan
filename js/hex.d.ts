@@ -12,10 +12,10 @@ declare type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
     isEqualTo(vector: Vector<N>): boolean;
     toString(): string;
 };
-interface VectorConstructor {
+interface VectorConverter {
     new <N extends number>(...initials: Tuple<number, N>): Vector<N>;
 }
-declare const GeneralVector: VectorConstructor;
+declare const GeneralVector: VectorConverter;
 declare type CartesianCoordinate = Vector<2>;
 declare type CubeCoordinate = Vector<3>;
 declare const FLAT_HEXAGON_DIRECTION_VECTORS: Record<keyof typeof FlatHexagonDirection, CubeCoordinate>;

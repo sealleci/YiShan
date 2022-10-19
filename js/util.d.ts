@@ -1,14 +1,15 @@
 import { NestedArray } from './type.js';
-declare function sleep(ms: number): Promise<unknown>;
+declare function sleep(ms: number): Promise<void>;
 declare function roll(min: number, max?: number): number;
 declare function range(start: number, end?: number): readonly number[];
 declare function flatten<T>(nested_array: NestedArray<T>): T[];
 declare function pad(text: string, filler: string, width: number, is_left?: boolean): string;
+declare function diagnose(variable: unknown): boolean;
 declare function getCurrentTime(): string;
 declare function clearChildren(element: HTMLElement): void;
 declare function toggleClass(element: HTMLElement, class_name: string): void;
 declare function addClass(element: HTMLElement, class_name: string): void;
 declare function removeClass(element: HTMLElement, class_name: string): void;
-export { sleep, roll, range, flatten, pad };
+export { sleep, roll, range, flatten, pad, diagnose };
 export { getCurrentTime };
 export { clearChildren, toggleClass, addClass, removeClass };
