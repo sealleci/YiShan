@@ -1,5 +1,4 @@
-const exec = require("child_process").exec;
-const simpleGit = require("simple-git");
+import { simpleGit } from 'simple-git';
 
 (async () => {
     function pad(number) {

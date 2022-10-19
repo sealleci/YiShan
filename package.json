@@ -2,17 +2,19 @@
     "name": "yishan",
     "version": "0.0.1",
     "description": "a little game about assembling plants to beat enemies.",
+    "type": "module",
     "scripts": {
         "build": "tsc",
         "watch": "tsc -w",
-        "style": "node ./script/compile_less.js",
-        "git": "node ./script/git.js",
+        "style": "node --experimental-modules ./script/compile_less.js",
+        "git": "node --experimental-modules ./script/git.js",
         "start": "npm run build && npm run style"
     },
     "author": "sealleci",
     "license": "MIT",
     "devDependencies": {
-        "typescript": "^4.8.4",
-        "simple-git": "^3.14.1"
+        "@types/node": "^18.11.2",
+        "simple-git": "^3.14.1",
+        "typescript": "^4.8.4"
     }
 }

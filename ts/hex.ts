@@ -1,3 +1,4 @@
+import { FlatHexagonDirection } from './enum'
 import { Tuple } from './type'
 
 type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
@@ -87,7 +88,7 @@ class VectorImplementation<N extends number>  {
         let components: number[] = []
         let norm = this.getNorm()
         if (norm === 0) {
-            throw new Error(`@hex.Vector.normalize: this.norm() is 0.`)
+            throw new Error(`@hex.VectorImplementation.normalize: this.norm(${norm}) is 0.`)
         }
         for (let i = 0; i < this.length; i += 1) {
             components.push(this[i] / norm)
@@ -134,7 +135,7 @@ type CartesianCoordinate = Vector<3>
  */
 type CubeCoordinate = Vector<3>
 
-const FLAT_HEXAGON_DIRECTION_VECTORS = {
+const FLAT_HEXAGON_DIRECTION_VECTORS: Record<keyof typeof FlatHexagonDirection, CubeCoordinate> = {
     TOP_LEFT: new GeneralVector(-1, 0, 1),
     TOP: new GeneralVector(0, -1, 1),
     TOP_RIGHT: new GeneralVector(1, -1, 0),
@@ -145,7 +146,6 @@ const FLAT_HEXAGON_DIRECTION_VECTORS = {
 
 export { GeneralVector, CartesianCoordinate, CubeCoordinate, FLAT_HEXAGON_DIRECTION_VECTORS }
 
-// import { FlatHexagonDirection } from './enum'
 // function test() {
 //     function foo(y: CubeCoordinate) {
 //         y.add(y)
@@ -163,6 +163,5 @@ export { GeneralVector, CartesianCoordinate, CubeCoordinate, FLAT_HEXAGON_DIRECT
 //     console.log(aaa.getMappingId())
 //     console.log(aaa.toString())
 //     let d = FLAT_HEXAGON_DIRECTION_VECTORS[FlatHexagonDirection.BOTTOM]
-//     console.log(d)
 // }
 // test()
