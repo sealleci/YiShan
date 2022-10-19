@@ -27,7 +27,6 @@ const __dirname = path.dirname(__filename);
     for (let file of files) {
         let file_path = path.join(__dirname, `${raw_dir}${file.name}`);
         if (statSync(file_path).isFile() && path.extname(file_path).includes("less")) {
-            // await exec(`lessc ${dir_path}${file.name} ${path.join(__dirname, raw_out)}${file.name.match(/^([^\.]+)\.[^\.]+$/)[1]}.css --source-map`);
             await asyncExec(`lessc ${dir_path}${file.name} ${path.join(__dirname, raw_out)}${file.name.match(/^([^\.]+)\.[^\.]+$/)[1]}.css --source-map`);
         }
     }
