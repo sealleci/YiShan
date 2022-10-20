@@ -7,5 +7,12 @@ var FlatHexagonDirection;
     FlatHexagonDirection["BOTTOM"] = "BOTTOM";
     FlatHexagonDirection["BOTTOM_LEFT"] = "BOTTOM_LEFT";
 })(FlatHexagonDirection || (FlatHexagonDirection = {}));
-export { FlatHexagonDirection };
+var PlantTagCategory;
+(function (PlantTagCategory) {
+    PlantTagCategory["CLASSIFACATION"] = "CLASSIFACATION";
+    PlantTagCategory["CLIMATE"] = "CLIMATE";
+    PlantTagCategory["VEGETATION"] = "VEGETATION";
+    PlantTagCategory["MORPHOLOGY"] = "MORPHOLOGY";
+})(PlantTagCategory || (PlantTagCategory = {}));
+export { FlatHexagonDirection, PlantTagCategory };
 //# sourceMappingURL=enum.js.map

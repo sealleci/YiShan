@@ -24,7 +24,6 @@ function forkSync(file_dir, file_name) {
             if (code !== 0) {
                 err = new Error(`@test.${file_name} exits with code ${code === null ? "unkown" : code}`);
             }
-
             if (err !== null) {
                 reject(err);
             } else {
@@ -54,12 +53,10 @@ function forkSync(file_dir, file_name) {
     }
 
     console.log(`@script.test: Start ${file_name} test.`);
-
     try {
         await forkSync("./test", file_name);
     } catch (err) {
         console.log(`@script.test: ${err.message}.`);
     }
-
     console.log(`@script.test: Complete ${file_name} test.`);
 })();

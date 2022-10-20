@@ -7,4 +7,11 @@ enum FlatHexagonDirection {
     BOTTOM_LEFT = 'BOTTOM_LEFT'
 }
 
-export { FlatHexagonDirection }
+enum PlantTagCategory {
+    CLASSIFACATION = 'CLASSIFACATION',
+    CLIMATE = 'CLIMATE',
+    VEGETATION = 'VEGETATION',
+    MORPHOLOGY = 'MORPHOLOGY'
+}
+
+export { FlatHexagonDirection, PlantTagCategory }

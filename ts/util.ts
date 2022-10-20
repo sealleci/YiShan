@@ -129,7 +129,7 @@ function getCurrentTime(): string {
 }
 
 function clearChildren(element: HTMLElement) {
-    for (let child of Array.from(element.childNodes)) {
+    for (const child of Array.from(element.childNodes)) {
         element.removeChild(child)
     }
 }

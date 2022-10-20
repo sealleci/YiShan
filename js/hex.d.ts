@@ -5,10 +5,10 @@ declare type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
     add(vector: Vector<N>): Vector<N>;
     scale(factor: number): Vector<N>;
     dot(vector: Vector<N>): number;
-    cross(vector: Vector<N>): Vector<N>;
+    cross(vector: Vector<3>): Vector<3>;
     getNorm(): number;
     normalize(): Vector<N>;
-    getMappingId(): string;
+    get id(): string;
     isEqualTo(vector: Vector<N>): boolean;
     toString(): string;
 };

@@ -59,7 +59,7 @@ function getCurrentTime() {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${pad(date.getMinutes().toString(), '0', 2)}:${pad(date.getSeconds().toString(), '0', 2)}`;
 }
 function clearChildren(element) {
-    for (let child of Array.from(element.childNodes)) {
+    for (const child of Array.from(element.childNodes)) {
         element.removeChild(child);
     }
 }

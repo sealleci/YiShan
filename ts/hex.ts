@@ -2,44 +2,44 @@ import { FlatHexagonDirection } from './enum.js'
 import { Tuple } from './type.js'
 
 type Vector<N extends number> = Omit<Tuple<number, N>, keyof any[]> & {
-    length: N,
+    length: N
     /**
      * Add two vectors.
      */
-    add(vector: Vector<N>): Vector<N>,
+    add(vector: Vector<N>): Vector<N>
     /**
      * Multiply the vector with given factor.
      */
-    scale(factor: number): Vector<N>,
+    scale(factor: number): Vector<N>
     /**
      * Return the dot product of two vectors.
      */
-    dot(vector: Vector<N>): number,
+    dot(vector: Vector<N>): number
     /**
      * Return the cross product of two vectors with three dimensions.
      */
-    cross(vector: Vector<N>): Vector<N>,
+    cross(vector: Vector<3>): Vector<3>
     /**
      * Return the norm of the vector.
      */
-    getNorm(): number,
+    getNorm(): number
     /**
      * Normalize the vector.
      */
-    normalize(): Vector<N>,
+    normalize(): Vector<N>
     /**
-     * Return the mapping id for HTML element.
+     * Return the mapping ID for HTML element.
      * 
      * Format of ID:
      * ``` js
      * /v(\d+_)*\d+/
      * ```
      */
-    getMappingId(): string,
+    get id(): string
     /**
      * Determine whether this is equal to the given vector.
      */
-    isEqualTo(vector: Vector<N>): boolean,
+    isEqualTo(vector: Vector<N>): boolean
     toString(): string
 }
 
@@ -50,12 +50,14 @@ interface VectorConverter {
 class VectorImplementation<N extends number>  {
     [k: number]: number
     public length: number
+
     constructor(...initials: readonly number[]) {
         this.length = initials.length
         for (let i = 0; i < initials.length; i += 1) {
             this[i] = initials[i]
         }
     }
+
     public add(vector: VectorImplementation<N>): VectorImplementation<N> {
         let components: number[] = []
         for (let i = 0; i < this.length; i += 1) {
@@ -63,6 +65,7 @@ class VectorImplementation<N extends number>  {
         }
         return new VectorImplementation(...components)
     }
+
     public scale(factor: number): VectorImplementation<N> {
         let components: number[] = []
         for (let i = 0; i < this.length; i += 1) {
@@ -70,6 +73,7 @@ class VectorImplementation<N extends number>  {
         }
         return new VectorImplementation(...components)
     }
+
     public dot(vector: VectorImplementation<N>): number {
         let result: number = 0.0
         for (let i = 0; i < this.length; i += 1) {
@@ -77,7 +81,8 @@ class VectorImplementation<N extends number>  {
         }
         return result
     }
-    public cross(vector: VectorImplementation<N>): VectorImplementation<N> {
+
+    public cross(vector: VectorImplementation<3>): VectorImplementation<3> {
         if (this.length !== 3 || vector.length !== 3) {
             throw new Error(`@ts.hex.VectorImplementation.cross: arg.dim(${this.length}) and this.dim(${vector.length}) are not both 3.`)
         }
@@ -87,6 +92,7 @@ class VectorImplementation<N extends number>  {
             this[0] * vector[1] - this[1] * vector[0]
         )
     }
+
     public getNorm(): number {
         let result: number = 0.0
         for (let i = 0; i < this.length; i += 1) {
@@ -94,6 +100,7 @@ class VectorImplementation<N extends number>  {
         }
         return Math.sqrt(result)
     }
+
     public normalize(): VectorImplementation<N> {
         let components: number[] = []
         let norm = this.getNorm()
@@ -105,13 +112,15 @@ class VectorImplementation<N extends number>  {
         }
         return new VectorImplementation(...components)
     }
-    public getMappingId(): string {
+
+    public get id(): string {
         let components: string[] = []
         for (let i = 0; i < this.length; i += 1) {
             components.push(Math.floor(this[i]).toString())
         }
         return `v${components.join('_')}`
     }
+
     public isEqualTo(vector: VectorImplementation<N>): boolean {
         for (let i = 0; i < this.length; i += 1) {
             if (this[i] !== vector[i]) {
@@ -120,6 +129,7 @@ class VectorImplementation<N extends number>  {
         }
         return true
     }
+
     public toString(): string {
         let components: string[] = []
         for (let i = 0; i < this.length; i += 1) {

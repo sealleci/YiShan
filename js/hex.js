@@ -50,7 +50,7 @@ class VectorImplementation {
         }
         return new VectorImplementation(...components);
     }
-    getMappingId() {
+    get id() {
         let components = [];
         for (let i = 0; i < this.length; i += 1) {
             components.push(Math.floor(this[i]).toString());

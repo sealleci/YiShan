@@ -17,6 +17,5 @@ function pad(number) {
 
     await git.add(".");
     await git.commit(comment);
-
     console.log(`@script.git: Executed git commands with comment \"${comment}\".`);
 })();
