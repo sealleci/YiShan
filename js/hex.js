@@ -68,11 +68,19 @@ class VectorImplementation {
     toString() {
         let components = [];
         for (let i = 0; i < this.length; i += 1) {
-            components.push(this[i].toFixed(2).toString());
+            components.push(Math.floor(this[i]) === this[i] ? this[i].toString() : this[i].toFixed(2).toString());
         }
         return `vec(${components.join(',')})`;
     }
 }
+/**
+ * Instantiate a vector with given initials.
+ *
+ * Usages:
+ * ``` js
+ * new GeneralVector(1, 2) // Vector<2>
+ * ```
+ */
 const GeneralVector = VectorImplementation;
 const FLAT_HEXAGON_DIRECTION_VECTORS = {
     TOP_LEFT: new GeneralVector(-1, 0, 1),

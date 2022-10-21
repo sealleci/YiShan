@@ -40,6 +40,7 @@ class PlantTagNode {
 
 /**
  * The head node of tag linked list. 
+ * @extends {PlantTagNode} 
  */
 class PlantTagRoot extends PlantTagNode {
     public readonly category: keyof typeof PlantTagCategory
@@ -140,7 +141,7 @@ class PlantTagRoot extends PlantTagNode {
     }
 
     public override toString(): string {
-        return `tag_root(${this.tier_name_key}):${this.category}`
+        return `${'<' + this.category + '>'}tag_root(${this.tier_name_key})`
     }
 
     /**
@@ -148,7 +149,7 @@ class PlantTagRoot extends PlantTagNode {
      * 
      * Usage:
      * ``` js
-     * create(CATEGORY, ['A', 'B']) // tag_root(A):CATEGORY -> tag_node(B)
+     * create(CATEGORY, ['A', 'B']) // <CATEGORY>tag_root(A) -> tag_node(B)
      * ```
      */
     public static create(category: keyof typeof PlantTagCategory, name_keys: readonly [string, ...string[]]): PlantTagRoot {

@@ -1,3 +1,6 @@
+/**
+ * The node of tag linked list.
+ */
 class PlantTagNode {
     constructor(tier_name_key, subtag = null) {
         this._tier_name_key = tier_name_key;
@@ -12,6 +15,9 @@ class PlantTagNode {
     get name_keys() {
         return [this._tier_name_key].concat(this.subtag === null ? [] : this.subtag.name_keys);
     }
+    /**
+     * Add a tag node after this.
+     */
     push(tier_name_key) {
         if (this._subtag === null) {
             this._subtag = new PlantTagNode(tier_name_key);
@@ -21,11 +27,23 @@ class PlantTagNode {
         return `tag_node(${this._tier_name_key})`;
     }
 }
+/**
+ * The head node of tag linked list.
+ * @extends {PlantTagNode}
+ */
 class PlantTagRoot extends PlantTagNode {
     constructor(category, tier_name_key) {
         super(tier_name_key, null);
         this.category = category;
     }
+    /**
+     * Attach a tag node at tail of tag linked list. Support method chaining.
+     *
+     * Usage:
+     * ``` js
+     * tag.attach('a').attach('b')
+     * ```
+     */
     attach(tier_name_key) {
         if (this.subtag === null) {
             this.push(tier_name_key);
@@ -41,6 +59,9 @@ class PlantTagRoot extends PlantTagNode {
         }
         return this;
     }
+    /**
+     * Determine whether 2 tag linked lists are same.
+     */
     isEqualTo(tag_root) {
         if (this.category !== tag_root.category ||
             this.tier_name_key !== tag_root.tier_name_key) {
@@ -64,6 +85,14 @@ class PlantTagRoot extends PlantTagNode {
         }
         return false;
     }
+    /**
+     * Determine whether this tag linked list has the same prefix of given tag linked list and is longer than it.
+     *
+     * Usage:
+     * ``` js
+     * long_tag.isDeriviedFrom(short_tag)
+     * ```
+     */
     isDeriviedFrom(tag_root) {
         if (this.category !== tag_root.category ||
             this.tier_name_key !== tag_root.tier_name_key) {
@@ -89,8 +118,16 @@ class PlantTagRoot extends PlantTagNode {
         return false;
     }
     toString() {
-        return `tag_root(${this.tier_name_key}):${this.category}`;
+        return `${'<' + this.category + '>'}tag_root(${this.tier_name_key})`;
     }
+    /**
+     * Create a tag linked list from given name list.
+     *
+     * Usage:
+     * ``` js
+     * create(CATEGORY, ['A', 'B']) // <CATEGORY>tag_root(A) -> tag_node(B)
+     * ```
+     */
     static create(category, name_keys) {
         const tag_root = new PlantTagRoot(category, name_keys[0]);
         for (let i = 1; i < name_keys.length; i += 1) {

@@ -5,13 +5,13 @@ function forkSync(file_dir, file_name) {
         const process = fork(`${file_dir}/${file_name}.js`, ["--experimental-modules"]);
         let is_invoked = false;
 
-        process.on("error", (err) => {
+        process.on("error", (error) => {
             if (is_invoked) {
                 return;
             }
             is_invoked = true;
 
-            reject(err);
+            reject(error);
         });
 
         process.on("exit", (code) => {
@@ -20,12 +20,12 @@ function forkSync(file_dir, file_name) {
             }
             is_invoked = true;
 
-            let err = null;
+            let error = null;
             if (code !== 0) {
-                err = new Error(`@test.${file_name} exits with code ${code === null ? "unkown" : code}`);
+                error = new Error(`@test.${file_name} exits with code ${code === null ? "unkown" : code}`);
             }
-            if (err !== null) {
-                reject(err);
+            if (error !== null) {
+                reject(error);
             } else {
                 resolve();
             }
@@ -55,8 +55,8 @@ function forkSync(file_dir, file_name) {
     console.log(`@script.test: Start ${file_name} test.`);
     try {
         await forkSync("./test", file_name);
-    } catch (err) {
-        console.log(`@script.test: ${err.message}.`);
+    } catch (error) {
+        console.log(`@script.test: ${error.message}.`);
     }
     console.log(`@script.test: Complete ${file_name} test.`);
 })();

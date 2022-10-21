@@ -133,7 +133,7 @@ class VectorImplementation<N extends number>  {
     public toString(): string {
         let components: string[] = []
         for (let i = 0; i < this.length; i += 1) {
-            components.push(this[i].toFixed(2).toString())
+            components.push(Math.floor(this[i]) === this[i] ? this[i].toString() : this[i].toFixed(2).toString())
         }
         return `vec(${components.join(',')})`
     }

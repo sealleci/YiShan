@@ -109,6 +109,44 @@ function pad(text: string, filler: string, width: number, is_left: boolean = tru
 }
 
 /**
+ * Print given value into console.
+ * @param lazy_value Value with lazy evaluation.
+ */
+function log(label: string, lazy_value: () => any) {
+    console.log(`${pad('(' + label + ')', ' ', 40, false)} => ${lazy_value()}`)
+}
+
+/**
+ * Determine whether given condition is true, and throw error when false.
+ * @param lazy_condition Condition with lazy evaluation.
+ */
+function assert(label: string, lazy_condition: () => boolean) {
+    if (lazy_condition()) {
+        console.log(`${pad('(' + label + ')?', ' ', 40, false)} => true`)
+    } else {
+        throw new Error(`${pad('(' + label + ')?', ' ', 40, false)} => false`)
+    }
+}
+
+/**
+ * Call functions in a row which are both without parameters and returns.
+ */
+function conduct(...functions: Array<() => void>) {
+    for (let i = 0; i < functions.length; i += 1) {
+        functions[i]()
+    }
+}
+
+/**
+ * Wait promises in a row which are both without parameters and returns.
+ */
+async function conductSync(...promises: (() => Promise<void>)[]) {
+    for (let i = 0; i < promises.length; i += 1) {
+        await promises[i]()
+    }
+}
+
+/**
  * Determine whether a variable is not ```null``` and ```undefined```.
  */
 function diagnose(variable: unknown): boolean {
@@ -123,7 +161,7 @@ function diagnose(variable: unknown): boolean {
  * /yyyy-MM-dd HH:mm:ss/
  * ```
  */
-function getCurrentTime(): string {
+function watch(): string {
     const date = new Date()
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${pad(date.getMinutes().toString(), '0', 2)}:${pad(date.getSeconds().toString(), '0', 2)}`
 }
@@ -154,6 +192,5 @@ function removeClass(element: HTMLElement, class_name: string) {
     }
 }
 
-export { sleep, roll, range, flatten, pad, diagnose }
-export { getCurrentTime }
+export { sleep, roll, range, flatten, pad, diagnose, log, assert, watch, conduct, conductSync }
 export { clearChildren, toggleClass, addClass, removeClass }

@@ -1,42 +1,46 @@
+import { log, assert, conduct } from '../js/util.js'
 import { GeneralVector, FLAT_HEXAGON_DIRECTION_VECTORS } from '../js/hex.js'
 import { FlatHexagonDirection, PlantTagCategory } from '../js/enum.js'
 import { PlantTag } from '../js/tag.js'
 import { exit } from 'process';
 
-function log(text) {
-    console.log(`@test.unit> ${text}`)
+
+function testVector() {
+    let d = FLAT_HEXAGON_DIRECTION_VECTORS[FlatHexagonDirection.BOTTOM]
+    let v1 = new GeneralVector(1, 2, 3)
+    let v2 = new GeneralVector(4, 5, 6)
+
+    log('bottom vector', () => d.toString())
+    log('vec(1,2,3)', () => v1.toString())
+    log('vec(1,2,3) + vec(4,5,6)', () => v1.add(v2).toString())
+    log('vec(1,2,3) * 0.5', () => v1.scale(0.5).toString())
+    log('vec(1,2,3) dot vec(4,5,6)', () => v1.dot(v2))
+    log('vec(1,2,3) cross vec(4,5,6)', () => v1.cross(v2).toString())
+    assert('vec(1,2,3) != vec(4,5,6)', () => !v1.isEqualTo(v2))
+    log('vec(1,2,3).norm', () => v1.getNorm().toFixed(2))
+    log('normalize vec(1,2,3)', () => v1.normalize().toString())
+    log('vec(1,2,3).id', () => v1.id)
+}
+
+function testTag() {
+    let tag_1 = PlantTag.create(PlantTagCategory.CLASSIFACATION, ['被子', '单子叶', '泽泻'])
+    let tag_2 = PlantTag.create(PlantTagCategory.CLASSIFACATION, ['A', 'B', 'C'])
+    let tag_3 = PlantTag.create(PlantTagCategory.CLASSIFACATION, ['A', 'B', 'C'])
+    let tag_4 = PlantTag.create(PlantTagCategory.CLASSIFACATION, ['A', 'B'])
+
+    log('tag name keys', () => tag_1.name_keys.join('.'))
+    assert('A.B.C == A.B.C', () => tag_2.isEqualTo(tag_3))
+    assert('A.B.C != A.B', () => !tag_2.isEqualTo(tag_4))
+    assert('A.B.C from A.B', () => tag_2.isDeriviedFrom(tag_4))
+    assert('A.B.C from A.B.C', () => tag_2.isDeriviedFrom(tag_3))
+    assert('A.B not from A.B.C', () => !tag_4.isDeriviedFrom(tag_2))
 }
 
 (async () => {
     try {
-        // let d = FLAT_HEXAGON_DIRECTION_VECTORS[FlatHexagonDirection.BOTTOM]
-        // let v1 = new GeneralVector(1, 2, 3)
-        // let v2 = new GeneralVector(4, 5, 6)
-
-        // log(d.toString())
-        // log(v1.add(v2).toString())
-        // log(v1.scale(0.5).toString())
-        // log(v1.dot(v2))
-        // log(v1.cross(v2).toString())
-        // log(v1.isEqualTo(v2))
-        // log(v1.getNorm())
-        // log(v1.normalize().toString())
-        // log(v1.id)
-        // log(v1.toString())
-
-        let tag_1 = PlantTag.create(PlantTagCategory.CLASSIFACATION, ['被子', '单子叶', '泽泻'])
-        let tag_2 = PlantTag.create(PlantTagCategory.CLASSIFACATION, ['A', 'B', 'C'])
-        let tag_3 = PlantTag.create(PlantTagCategory.CLASSIFACATION, ['A', 'B', 'C'])
-        let tag_4 = PlantTag.create(PlantTagCategory.CLASSIFACATION, ['A', 'B'])
-
-        log(tag_1.name_keys.join('.'))
-        log(tag_2.isEqualTo(tag_3))
-        log(tag_2.isEqualTo(tag_4))
-        log(tag_2.isDeriviedFrom(tag_4))
-        log(tag_2.isDeriviedFrom(tag_3))
-        log(tag_4.isDeriviedFrom(tag_2))
-    } catch (err) {
-        console.log(`@test.unit: Terminate with error \"${err}\".`)
+        conduct(testVector, testTag)
+    } catch (error) {
+        console.log(`@test.unit: Terminate with ${error.name} \"${error.message}\".`)
         exit(1);
     } finally {
         console.log(`@test.unit: Pass all cases.`)
