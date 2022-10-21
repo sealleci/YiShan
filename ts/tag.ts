@@ -1,5 +1,3 @@
-// TODO: 标签和子标签，递归比较
-
 import { PlantTagCategory } from './enum.js'
 
 /**
@@ -33,13 +31,6 @@ class PlantTagNode {
         if (this._subtag === null) {
             this._subtag = new PlantTagNode(tier_name_key)
         }
-    }
-
-    /**
-     * Overwrite the subsequent linked list.
-     */
-    public overwrite(tag_node: PlantTagNode | null) {
-        this._subtag = tag_node
     }
 
     public toString(): string {
@@ -113,6 +104,41 @@ class PlantTagRoot extends PlantTagNode {
         return false
     }
 
+    /**
+     * Determine whether this tag linked list has the same prefix of given tag linked list and is longer than it.
+     * 
+     * Usage:
+     * ``` js
+     * long_tag.isDeriviedFrom(short_tag)
+     * ```
+     */
+    public isDeriviedFrom(tag_root: PlantTagRoot): boolean {
+        if (this.category !== tag_root.category ||
+            this.tier_name_key !== tag_root.tier_name_key) {
+            return false
+        }
+
+        let tag_pointer_1 = this.subtag
+        let tag_pointer_2 = tag_root.subtag
+        while (true) {
+            if (tag_pointer_1 === null && tag_pointer_2 === null ||
+                tag_pointer_1 !== null && tag_pointer_2 === null) {
+                return true
+            }
+
+            if (tag_pointer_1 !== null &&
+                tag_pointer_2 !== null &&
+                tag_pointer_1.tier_name_key === tag_pointer_2.tier_name_key) {
+                tag_pointer_1 = tag_pointer_1.subtag
+                tag_pointer_2 = tag_pointer_2.subtag
+            } else {
+                break
+            }
+        }
+
+        return false
+    }
+
     public override toString(): string {
         return `tag_root(${this.tier_name_key}):${this.category}`
     }
@@ -122,7 +148,7 @@ class PlantTagRoot extends PlantTagNode {
      * 
      * Usage:
      * ``` js
-     * create(category, ['A', 'B']) // tag_root(A):category -> tag_node(B)
+     * create(CATEGORY, ['A', 'B']) // tag_root(A):CATEGORY -> tag_node(B)
      * ```
      */
     public static create(category: keyof typeof PlantTagCategory, name_keys: readonly [string, ...string[]]): PlantTagRoot {
