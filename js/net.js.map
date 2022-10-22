@@ -1,1 +1,1 @@
-{"version":3,"file":"net.js","sourceRoot":"","sources":["../ts/net.ts"],"names":[],"mappings":";AAAA,oBAAoB"}
+{"version":3,"file":"net.js","sourceRoot":"","sources":["../ts/net.ts"],"names":[],"mappings":"AAAA,oBAAoB;;;;;;;;;;AAEpB,SAAe,SAAS,CAAC,SAAiB,EAAE,SAAiB;;QACzD,MAAM,QAAQ,GAAG,MAAM,KAAK,CAAC,GAAG,SAAS,IAAI,SAAS,EAAE,CAAC,CAAA;QACzD,OAAO,QAAQ,CAAC,IAAI,EAAE,CAAA;IAC1B,CAAC;CAAA;AAED,OAAO,EAAE,SAAS,EAAE,CAAA"}

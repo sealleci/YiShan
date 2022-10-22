@@ -4,14 +4,14 @@ import { L10nFieldKeys } from './enum.js';
  *
  * Usage:
  * ``` js
- * button_l10n_filed.get('en') // "Start"
+ * button_l10n_filed.speak('EN') // "Start"
  * ```
  */
 class L10nField {
     constructor(data) {
         this._data = data;
     }
-    get(key) {
+    speak(key) {
         if (key in Object.keys(this._data)) {
             const value = this._data[key];
             return value !== undefined && value !== '' ? value : 'VALUE_MISSING';
@@ -24,7 +24,7 @@ class L10nField {
  *
  * Usage:
  * ``` js
- * l10n_book.get('BUTTON_TEXT').get('en') // "Start"
+ * l10n_book.consult(BUTTON_TEXT).speak('EN') // "Start"
  * ```
  */
 class L10nBook {
@@ -46,7 +46,7 @@ class L10nBook {
             this._data[field_key] = new L10nField(page);
         }
     }
-    get(key) {
+    consult(key) {
         let field = this._data[key];
         return field !== undefined ? field : new L10nField({});
     }

@@ -6,7 +6,7 @@ import { L10nFieldKeys } from './enum.js'
  * 
  * Usage:
  * ``` js
- * button_l10n_filed.get('en') // "Start"
+ * button_l10n_filed.speak('EN') // "Start"
  * ```
  */
 class L10nField {
@@ -16,7 +16,7 @@ class L10nField {
         this._data = data
     }
 
-    public get(key: string): string {
+    public speak(key: string): string {
         if (key in Object.keys(this._data)) {
             const value = this._data[key]
             return value !== undefined && value !== '' ? value : 'VALUE_MISSING'
@@ -30,7 +30,7 @@ class L10nField {
  * 
  * Usage:
  * ``` js
- * l10n_book.get('BUTTON_TEXT').get('en') // "Start"
+ * l10n_book.consult(BUTTON_TEXT).speak('EN') // "Start"
  * ```
  */
 class L10nBook {
@@ -38,23 +38,27 @@ class L10nBook {
     constructor(...raw_data: readonly L10nRawData[]) {
         for (const [field_key_string, field_key] of Object.entries(L10nFieldKeys)) {
             const page: Dictionary = {}
+
             for (const raw_page of raw_data) {
                 if (raw_page.language === '') {
                     continue
                 }
 
                 let field_value = ''
+
                 if (field_key_string in raw_page.fields) {
                     const raw_field_value = raw_page.fields[field_key_string]
                     field_value = raw_field_value !== undefined ? raw_field_value : ''
                 }
+
                 page[raw_page.language] = field_value
             }
+
             this._data[field_key] = new L10nField(page)
         }
     }
 
-    public get(key: L10nFieldKeys): L10nField {
+    public consult(key: L10nFieldKeys): L10nField {
         let field = this._data[key]
         return field !== undefined ? field : new L10nField({})
     }

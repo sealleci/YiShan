@@ -1,0 +1,9 @@
+{
+    "lang": [
+        {
+            "key": "EN",
+            "name": "English",
+            "file": "en.json"
+        }
+    ]
+}

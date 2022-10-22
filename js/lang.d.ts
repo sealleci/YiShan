@@ -5,25 +5,25 @@ import { L10nFieldKeys } from './enum.js';
  *
  * Usage:
  * ``` js
- * button_l10n_filed.get('en') // "Start"
+ * button_l10n_filed.speak('EN') // "Start"
  * ```
  */
 declare class L10nField {
     private _data;
     constructor(data: Dictionary);
-    get(key: string): string;
+    speak(key: string): string;
 }
 /**
  * Dictionary of key-value pair ```(field_key, l10n_field)```.
  *
  * Usage:
  * ``` js
- * l10n_book.get('BUTTON_TEXT').get('en') // "Start"
+ * l10n_book.consult(BUTTON_TEXT).speak('EN') // "Start"
  * ```
  */
 declare class L10nBook {
     private _data;
     constructor(...raw_data: readonly L10nRawData[]);
-    get(key: L10nFieldKeys): L10nField;
+    consult(key: L10nFieldKeys): L10nField;
 }
 export { L10nBook };
