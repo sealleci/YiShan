@@ -56,7 +56,7 @@ function forkSync(file_dir, file_name) {
     try {
         await forkSync("./test", file_name);
     } catch (error) {
-        console.log(`@script.test: ${error.message}.`);
+        console.log(`@script.test: Terminate with \"${error}\".`);
     }
     console.log(`@script.test: Complete ${file_name} test.`);
 })();

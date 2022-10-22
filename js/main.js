@@ -9,7 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { fetchJSON } from './net.js';
 document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, void 0, function* () {
-    let config = yield fetchJSON('./asset/config', 'lang.json');
-    console.log(config);
+    try {
+        let config = yield fetchJSON('./asset/config', 'lang.json');
+        console.log(JSON.stringify(config));
+    }
+    catch (error) {
+        console.log(`@ts.main: Terminate with \"${error}\".`);
+    }
 }));
 //# sourceMappingURL=main.js.map

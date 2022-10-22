@@ -40,7 +40,7 @@ function testTag() {
     try {
         conduct(testVector, testTag)
     } catch (error) {
-        console.log(`@test.unit: Terminate with ${error.name} \"${error.message}\".`)
+        console.log(`@test.unit: Terminate with \"${error}\".`)
         exit(1);
     } finally {
         console.log(`@test.unit: Pass all cases.`)

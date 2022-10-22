@@ -147,13 +147,6 @@ async function conductSync(...promises: (() => Promise<void>)[]) {
 }
 
 /**
- * Determine whether a variable is not ```null``` and ```undefined```.
- */
-function diagnose(variable: unknown): boolean {
-    return variable !== null && variable !== undefined
-}
-
-/**
  * Return the current local time.
  * 
  * Format of time:
@@ -164,6 +157,20 @@ function diagnose(variable: unknown): boolean {
 function watch(): string {
     const date = new Date()
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${pad(date.getMinutes().toString(), '0', 2)}:${pad(date.getSeconds().toString(), '0', 2)}`
+}
+
+/**
+ * Determine whether a variable is not ```null``` and ```undefined```.
+ */
+function isReal(variable: unknown): boolean {
+    return variable !== null && variable !== undefined
+}
+
+/**
+ * Determine whether a number is not ```NaN``` and ```Infinity```.
+ */
+function isCommon(value: number): boolean {
+    return !(isNaN(value) || value === Infinity)
 }
 
 function clearChildren(element: HTMLElement) {
@@ -192,5 +199,5 @@ function removeClass(element: HTMLElement, class_name: string) {
     }
 }
 
-export { sleep, roll, range, flatten, pad, diagnose, log, assert, watch, conduct, conductSync }
+export { sleep, roll, range, flatten, pad, log, assert, watch, conduct, conductSync, isReal, isCommon }
 export { clearChildren, toggleClass, addClass, removeClass }
