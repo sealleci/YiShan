@@ -3,4 +3,11 @@ declare type Tuple<T, N extends number> = N extends N ? number extends N ? T[] :
     length: N;
 } : never;
 declare type NestedArray<T> = Array<NestedArray<T> | T>;
-export { Tuple, NestedArray };
+declare type Dictionary<K extends string | number | symbol = string, V = string> = {
+    [key in K]?: V;
+};
+declare type L10nRawData = {
+    "language": string;
+    "fields": Dictionary;
+};
+export { Tuple, NestedArray, Dictionary, L10nRawData };

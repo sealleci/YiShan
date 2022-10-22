@@ -142,7 +142,7 @@ function conductSync(...promises) {
  * Determine whether a variable is not ```null``` and ```undefined```.
  */
 function diagnose(variable) {
-    return variable !== null && typeof (variable) !== 'undefined';
+    return variable !== null && variable !== undefined;
 }
 /**
  * Return the current local time.
