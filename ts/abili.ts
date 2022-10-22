@@ -18,7 +18,7 @@ abstract class AbstractAbility {
         return this._priority
     }
 
-    public abstract configurate(...args: any[]): void
+    public abstract prepare(...args: any[]): void
     public abstract exert(): void
     public abstract report(): any
 }

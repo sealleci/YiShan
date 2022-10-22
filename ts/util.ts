@@ -150,7 +150,7 @@ async function conductSync(...promises: (() => Promise<void>)[]) {
  * Determine whether a variable is not ```null``` and ```undefined```.
  */
 function diagnose(variable: unknown): boolean {
-    return variable !== null && typeof (variable) !== 'undefined'
+    return variable !== null && variable !== undefined
 }
 
 /**

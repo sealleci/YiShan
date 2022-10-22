@@ -48,7 +48,7 @@ interface VectorConverter {
 }
 
 class VectorImplementation<N extends number>  {
-    [k: number]: number
+    [index: number]: number
     public length: number
 
     constructor(...initials: readonly number[]) {
