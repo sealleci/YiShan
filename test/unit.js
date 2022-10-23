@@ -1,4 +1,4 @@
-import { log, assert, conduct } from '../js/util.js'
+import { log, assert, conduct, getUUID } from '../js/util.js'
 import { GeneralVector, FLAT_HEXAGON_DIRECTION_VECTORS } from '../js/hex.js'
 import { FlatHexagonDirection, PlantTagCategory } from '../js/enum.js'
 import { PlantTag } from '../js/tag.js'
@@ -36,9 +36,15 @@ function testTag() {
     assert('A.B not from A.B.C', () => !tag_4.isDeriviedFrom(tag_2))
 }
 
+function testUtil() {
+    for (let i = 0; i < 100; i += 1) {
+        log('uuid', getUUID)
+    }
+}
+
 (async () => {
     try {
-        conduct(testVector, testTag)
+        conduct(testUtil/*, testVector, testTag*/)
     } catch (error) {
         console.log(`@test.unit: Terminate with \"${error}\".`)
         exit(1);

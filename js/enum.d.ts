@@ -12,8 +12,12 @@ declare enum PlantTagCategory {
     VEGETATION = "VEGETATION",
     MORPHOLOGY = "MORPHOLOGY"
 }
-declare enum L10nFieldKeys {
+declare enum L10nFieldKey {
     BUTTON_START = "BUTTON_START",
     BUTTON_BACK = "BUTTON_BACK"
 }
-export { FlatHexagonDirection, PlantTagCategory, L10nFieldKeys };
+declare enum DamageType {
+    NORMAL = "NORMAL",
+    OTHER = "OTHER"
+}
+export { FlatHexagonDirection, PlantTagCategory, L10nFieldKey, DamageType };

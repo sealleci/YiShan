@@ -14,9 +14,14 @@ enum PlantTagCategory {
     MORPHOLOGY = 'MORPHOLOGY'
 }
 
-enum L10nFieldKeys {
+enum L10nFieldKey {
     BUTTON_START = 'BUTTON_START',
     BUTTON_BACK = 'BUTTON_BACK'
 }
 
-export { FlatHexagonDirection, PlantTagCategory, L10nFieldKeys }
+enum DamageType {
+    NORMAL = 'NORMAL',
+    OTHER = 'OTHER'
+}
+
+export { FlatHexagonDirection, PlantTagCategory, L10nFieldKey, DamageType }

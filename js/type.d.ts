@@ -10,4 +10,11 @@ declare type L10nRawData = {
     "language": string;
     "fields": Dictionary;
 };
-export { Tuple, NestedArray, Dictionary, L10nRawData };
+declare type ImageRequest = {
+    [index: string]: string;
+};
+declare type ImageResponse = {
+    [index: string]: HTMLImageElement;
+};
+export { Tuple, NestedArray, Dictionary };
+export { L10nRawData, ImageRequest, ImageResponse };

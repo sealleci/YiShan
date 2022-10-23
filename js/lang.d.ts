@@ -1,5 +1,5 @@
 import { Dictionary, L10nRawData } from './type.js';
-import { L10nFieldKeys } from './enum.js';
+import { L10nFieldKey } from './enum.js';
 /**
  * Dictionary of key-value pair ```(language, field_value)```.
  *
@@ -24,6 +24,6 @@ declare class L10nField {
 declare class L10nBook {
     private _data;
     constructor(...raw_data: readonly L10nRawData[]);
-    consult(key: L10nFieldKeys): L10nField;
+    consult(key: L10nFieldKey): L10nField;
 }
 export { L10nBook };

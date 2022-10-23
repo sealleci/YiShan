@@ -60,14 +60,6 @@ declare function assert(label: string, lazy_condition: () => boolean): void;
  */
 declare function conduct(...functions: Array<() => void>): void;
 /**
- * Wait promises in a row which are both without parameters and returns.
- */
-declare function conductSync(...promises: (() => Promise<void>)[]): Promise<void>;
-/**
- * Determine whether a variable is not ```null``` and ```undefined```.
- */
-declare function diagnose(variable: unknown): boolean;
-/**
  * Return the current local time.
  *
  * Format of time:
@@ -75,10 +67,27 @@ declare function diagnose(variable: unknown): boolean;
  * /yyyy-MM-dd HH:mm:ss/
  * ```
  */
-declare function watch(): string;
+declare function getTime(): string;
+/**
+ * Reutrn a UUIDv4.
+ *
+ * Format of UUIDv4:
+ * ``` js
+ * /[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/
+ * ```
+ */
+declare function getUUID(): string;
+/**
+ * Determine whether a variable is not ```null``` and ```undefined```.
+ */
+declare function isReal(variable: unknown): boolean;
+/**
+ * Determine whether a number is not ```NaN``` and ```Infinity```.
+ */
+declare function isCommon(value: number): boolean;
 declare function clearChildren(element: HTMLElement): void;
 declare function toggleClass(element: HTMLElement, class_name: string): void;
 declare function addClass(element: HTMLElement, class_name: string): void;
 declare function removeClass(element: HTMLElement, class_name: string): void;
-export { sleep, roll, range, flatten, pad, diagnose, log, assert, watch, conduct, conductSync };
+export { sleep, roll, range, flatten, pad, log, assert, getTime, getUUID, conduct, isReal, isCommon };
 export { clearChildren, toggleClass, addClass, removeClass };

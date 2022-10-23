@@ -138,15 +138,6 @@ function conduct(...functions: Array<() => void>) {
 }
 
 /**
- * Wait promises in a row which are both without parameters and returns.
- */
-async function conductSync(...promises: (() => Promise<void>)[]) {
-    for (let i = 0; i < promises.length; i += 1) {
-        await promises[i]()
-    }
-}
-
-/**
  * Return the current local time.
  * 
  * Format of time:
@@ -154,9 +145,37 @@ async function conductSync(...promises: (() => Promise<void>)[]) {
  * /yyyy-MM-dd HH:mm:ss/
  * ```
  */
-function watch(): string {
+function getTime(): string {
     const date = new Date()
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${pad(date.getMinutes().toString(), '0', 2)}:${pad(date.getSeconds().toString(), '0', 2)}`
+}
+
+/**
+ * Reutrn a UUIDv4.
+ * 
+ * Format of UUIDv4:
+ * ``` js
+ * /[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/
+ * ```
+ */
+function getUUID(): string {
+    function getNumber(limit: number): number {
+        return (limit * Math.random()) | 0
+    }
+
+    function getXes(count: number): string {
+        let result = ''
+        for (let i = 0; i < count; i += 1) {
+            result += getNumber(16).toString(16).toLowerCase()
+        }
+        return result
+    }
+
+    function getVariant(): string {
+        return ((getNumber(16) & 0x3) | 0x8).toString(16).toLowerCase()
+    }
+
+    return `${getXes(8)}-${getXes(4)}-4${getXes(3)}-${getVariant()}${getXes(3)}-${getXes(12)}`
 }
 
 /**
@@ -199,5 +218,5 @@ function removeClass(element: HTMLElement, class_name: string) {
     }
 }
 
-export { sleep, roll, range, flatten, pad, log, assert, watch, conduct, conductSync, isReal, isCommon }
+export { sleep, roll, range, flatten, pad, log, assert, getTime, getUUID, conduct, isReal, isCommon }
 export { clearChildren, toggleClass, addClass, removeClass }

@@ -1,5 +1,5 @@
 import { Dictionary, L10nRawData } from './type.js'
-import { L10nFieldKeys } from './enum.js'
+import { L10nFieldKey } from './enum.js'
 
 /**
  * Dictionary of key-value pair ```(language, field_value)```.
@@ -34,9 +34,9 @@ class L10nField {
  * ```
  */
 class L10nBook {
-    private _data: Dictionary<L10nFieldKeys, L10nField> = {}
+    private _data: Dictionary<L10nFieldKey, L10nField> = {}
     constructor(...raw_data: readonly L10nRawData[]) {
-        for (const [field_key_string, field_key] of Object.entries(L10nFieldKeys)) {
+        for (const [field_key_string, field_key] of Object.entries(L10nFieldKey)) {
             const page: Dictionary = {}
 
             for (const raw_page of raw_data) {
@@ -58,7 +58,7 @@ class L10nBook {
         }
     }
 
-    public consult(key: L10nFieldKeys): L10nField {
+    public consult(key: L10nFieldKey): L10nField {
         let field = this._data[key]
         return field !== undefined ? field : new L10nField({})
     }

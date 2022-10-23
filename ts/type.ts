@@ -4,5 +4,8 @@ type NestedArray<T> = Array<NestedArray<T> | T>
 type Dictionary<K extends string | number | symbol = string, V = string> = { [key in K]?: V }
 
 type L10nRawData = { "language": string, "fields": Dictionary }
+type ImageRequest = { [index: string]: string }
+type ImageResponse = { [index: string]: HTMLImageElement }
 
-export { Tuple, NestedArray, Dictionary, L10nRawData }
+export { Tuple, NestedArray, Dictionary }
+export { L10nRawData, ImageRequest, ImageResponse }

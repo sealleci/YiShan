@@ -14,10 +14,15 @@ var PlantTagCategory;
     PlantTagCategory["VEGETATION"] = "VEGETATION";
     PlantTagCategory["MORPHOLOGY"] = "MORPHOLOGY";
 })(PlantTagCategory || (PlantTagCategory = {}));
-var L10nFieldKeys;
-(function (L10nFieldKeys) {
-    L10nFieldKeys["BUTTON_START"] = "BUTTON_START";
-    L10nFieldKeys["BUTTON_BACK"] = "BUTTON_BACK";
-})(L10nFieldKeys || (L10nFieldKeys = {}));
-export { FlatHexagonDirection, PlantTagCategory, L10nFieldKeys };
+var L10nFieldKey;
+(function (L10nFieldKey) {
+    L10nFieldKey["BUTTON_START"] = "BUTTON_START";
+    L10nFieldKey["BUTTON_BACK"] = "BUTTON_BACK";
+})(L10nFieldKey || (L10nFieldKey = {}));
+var DamageType;
+(function (DamageType) {
+    DamageType["NORMAL"] = "NORMAL";
+    DamageType["OTHER"] = "OTHER";
+})(DamageType || (DamageType = {}));
+export { FlatHexagonDirection, PlantTagCategory, L10nFieldKey, DamageType };
 //# sourceMappingURL=enum.js.map

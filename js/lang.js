@@ -1,4 +1,4 @@
-import { L10nFieldKeys } from './enum.js';
+import { L10nFieldKey } from './enum.js';
 /**
  * Dictionary of key-value pair ```(language, field_value)```.
  *
@@ -30,7 +30,7 @@ class L10nField {
 class L10nBook {
     constructor(...raw_data) {
         this._data = {};
-        for (const [field_key_string, field_key] of Object.entries(L10nFieldKeys)) {
+        for (const [field_key_string, field_key] of Object.entries(L10nFieldKey)) {
             const page = {};
             for (const raw_page of raw_data) {
                 if (raw_page.language === '') {

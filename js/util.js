@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 /**
  * Sleep for given time.
  *
@@ -129,22 +120,6 @@ function conduct(...functions) {
     }
 }
 /**
- * Wait promises in a row which are both without parameters and returns.
- */
-function conductSync(...promises) {
-    return __awaiter(this, void 0, void 0, function* () {
-        for (let i = 0; i < promises.length; i += 1) {
-            yield promises[i]();
-        }
-    });
-}
-/**
- * Determine whether a variable is not ```null``` and ```undefined```.
- */
-function diagnose(variable) {
-    return variable !== null && variable !== undefined;
-}
-/**
  * Return the current local time.
  *
  * Format of time:
@@ -152,9 +127,45 @@ function diagnose(variable) {
  * /yyyy-MM-dd HH:mm:ss/
  * ```
  */
-function watch() {
+function getTime() {
     const date = new Date();
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${pad(date.getHours().toString(), '0', 2)}:${pad(date.getMinutes().toString(), '0', 2)}:${pad(date.getSeconds().toString(), '0', 2)}`;
+}
+/**
+ * Reutrn a UUIDv4.
+ *
+ * Format of UUIDv4:
+ * ``` js
+ * /[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/
+ * ```
+ */
+function getUUID() {
+    function getNumber(limit) {
+        return (limit * Math.random()) | 0;
+    }
+    function getXes(count) {
+        let result = '';
+        for (let i = 0; i < count; i += 1) {
+            result += getNumber(16).toString(16).toLowerCase();
+        }
+        return result;
+    }
+    function getVariant() {
+        return ((getNumber(16) & 0x3) | 0x8).toString(16).toLowerCase();
+    }
+    return `${getXes(8)}-${getXes(4)}-4${getXes(3)}-${getVariant()}${getXes(3)}-${getXes(12)}`;
+}
+/**
+ * Determine whether a variable is not ```null``` and ```undefined```.
+ */
+function isReal(variable) {
+    return variable !== null && variable !== undefined;
+}
+/**
+ * Determine whether a number is not ```NaN``` and ```Infinity```.
+ */
+function isCommon(value) {
+    return !(isNaN(value) || value === Infinity);
 }
 function clearChildren(element) {
     for (const child of Array.from(element.childNodes)) {
@@ -179,6 +190,6 @@ function removeClass(element, class_name) {
         element.classList.remove(class_name);
     }
 }
-export { sleep, roll, range, flatten, pad, diagnose, log, assert, watch, conduct, conductSync };
+export { sleep, roll, range, flatten, pad, log, assert, getTime, getUUID, conduct, isReal, isCommon };
 export { clearChildren, toggleClass, addClass, removeClass };
 //# sourceMappingURL=util.js.map
